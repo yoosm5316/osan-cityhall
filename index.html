@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오산시청 - 부서 안내와 활동 소식 (실습용)</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chat.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">본문 바로가기</a>
+
+  <!-- 보기 편하게 설정 -->
+  <div class="a11y-bar" aria-label="화면 보기 설정">
+    <div class="wrap a11y-inner">
+      <span>보기 설정</span>
+      <div class="a11y-group" role="group" aria-label="글자 크기">
+        <button data-font="-1" aria-label="글자 작게">가<small>−</small></button>
+        <button data-font="0" aria-label="글자 기본 크기">가</button>
+        <button data-font="1" aria-label="글자 크게">가<strong>+</strong></button>
+      </div>
+      <button id="contrast-btn" class="contrast-btn" aria-pressed="false">◐ 고대비</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#" class="logo" aria-label="오산시청 처음으로">
+        <span class="logo-mark" aria-hidden="true">🌿</span>
+        <span>오산시청</span>
+      </a>
+      <nav class="main-nav" aria-label="주 메뉴">
+        <a href="#departments">부서 안내</a>
+        <a href="#gallery">활동 사진</a>
+        <a href="#visit">찾아오시는 길</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 첫 화면 -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <p class="hello">안녕하세요 👋</p>
+          <h1>시민과 함께 걷는<br /><em>따뜻한 오산</em></h1>
+          <p class="hero-desc">어떤 부서가 어떤 일을 하는지, 요즘 어떤 활동을 했는지 쉽게 찾아보세요.</p>
+          <form class="search" role="search" onsubmit="return false">
+            <label for="search" class="sr-only">부서나 업무 찾기</label>
+            <input id="search" type="search" placeholder="무엇을 도와드릴까요? 예: 예방접종, 버스, 어린이집" autocomplete="off" />
+            <button type="button" id="search-btn">찾기</button>
+          </form>
+          <div class="quick" aria-label="자주 찾는 업무">
+            <span>자주 찾는 업무</span>
+            <button data-q="예방접종">💉 예방접종</button>
+            <button data-q="버스">🚌 버스</button>
+            <button data-q="일자리">💼 일자리</button>
+            <button data-q="어르신">👵 어르신 복지</button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 420 320" role="img">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#dff0ff" />
+                <stop offset="1" stop-color="#fff8ec" />
+              </linearGradient>
+            </defs>
+            <rect width="420" height="320" rx="32" fill="url(#sky)" />
+            <circle cx="340" cy="70" r="34" fill="#ffd98a" />
+            <g fill="#fff">
+              <ellipse cx="90" cy="70" rx="38" ry="14" /><ellipse cx="118" cy="62" rx="26" ry="14" />
+              <ellipse cx="250" cy="45" rx="30" ry="11" />
+            </g>
+            <path d="M0 230 Q110 170 220 220 T420 200 V320 H0Z" fill="#bfe5cf" />
+            <path d="M0 260 Q140 215 260 255 T420 245 V320 H0Z" fill="#8fd0ad" />
+            <!-- 시청 건물 -->
+            <rect x="140" y="140" width="140" height="100" rx="8" fill="#ffffff" stroke="#c9d7e8" stroke-width="3" />
+            <path d="M130 145 L210 100 L290 145Z" fill="#ffb48a" />
+            <rect x="196" y="190" width="28" height="50" rx="4" fill="#9cc3ea" />
+            <g fill="#cfe3f7">
+              <rect x="155" y="160" width="26" height="20" rx="3" /><rect x="239" y="160" width="26" height="20" rx="3" />
+              <rect x="155" y="195" width="26" height="20" rx="3" /><rect x="239" y="195" width="26" height="20" rx="3" />
+            </g>
+            <rect x="207" y="70" width="3" height="32" fill="#7a8a9a" />
+            <path d="M210 70 h24 l-6 7 6 7 h-24z" fill="#5b8def" />
+            <!-- 나무와 사람 -->
+            <circle cx="95" cy="225" r="24" fill="#6cc093" /><rect x="92" y="240" width="6" height="22" fill="#a77b56" />
+            <circle cx="335" cy="222" r="20" fill="#6cc093" /><rect x="332" y="236" width="6" height="20" fill="#a77b56" />
+            <g>
+              <circle cx="150" cy="262" r="8" fill="#ffd2b0" /><rect x="143" y="270" width="14" height="22" rx="6" fill="#e8789a" />
+              <circle cx="172" cy="266" r="6" fill="#ffd2b0" /><rect x="167" y="272" width="10" height="16" rx="5" fill="#f0a040" />
+              <circle cx="270" cy="262" r="8" fill="#ffd2b0" /><rect x="263" y="270" width="14" height="22" rx="6" fill="#5b8def" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 부서 안내 -->
+    <section id="departments" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>부서 안내</h2>
+          <p>부서 카드를 누르면 하는 일과 활동 사진을 볼 수 있어요.</p>
+        </div>
+        <div class="tabs" id="dept-tabs" role="tablist" aria-label="분야 선택"></div>
+        <p class="result" id="dept-result" aria-live="polite"></p>
+        <div class="dept-grid" id="dept-grid"></div>
+        <p class="empty" id="dept-empty" hidden>찾는 부서나 업무가 없어요. 다른 낱말로 찾아보세요.</p>
+      </div>
+    </section>
+
+    <!-- 활동 사진 -->
+    <section id="gallery" class="section soft">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>활동 사진</h2>
+          <p>각 부서가 시민과 함께한 순간들이에요. 사진을 누르면 크게 볼 수 있어요.</p>
+        </div>
+        <div class="tabs" id="gallery-tabs" role="tablist" aria-label="사진 분야 선택"></div>
+        <div class="gallery" id="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- 찾아오시는 길 -->
+    <section id="visit" class="section">
+      <div class="wrap visit">
+        <div class="visit-card">
+          <h2>찾아오시는 길</h2>
+          <dl>
+            <dt>📍 주소</dt><dd>경기도 오산시 성호대로 141 (오산시청)</dd>
+            <dt>🕘 민원 시간</dt><dd>평일 오전 9시 ~ 오후 6시 (주말·공휴일 휴무)</dd>
+            <dt>🚆 대중교통</dt><dd>수도권 전철 1호선 오산역에서 버스 또는 도보로 이동</dd>
+          </dl>
+          <a class="btn" href="https://map.naver.com/p/search/%EC%98%A4%EC%82%B0%EC%8B%9C%EC%B2%AD" target="_blank" rel="noopener">지도에서 보기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><strong>오산시청 홈페이지 (실습용)</strong></p>
+      <p>이 페이지는 학습용으로 만든 예시이며 오산시의 공식 누리집이 아닙니다. 부서 정보와 활동 내용은 예시입니다.</p>
+    </div>
+  </footer>
+
+  <!-- 부서 상세 -->
+  <div class="modal" id="dept-modal" hidden>
+    <div class="backdrop" data-close></div>
+    <article class="sheet" role="dialog" aria-modal="true" aria-labelledby="dept-title">
+      <button class="close" data-close aria-label="닫기">✕</button>
+      <div id="dept-body"></div>
+    </article>
+  </div>
+
+  <!-- 사진 크게 보기 -->
+  <div class="modal" id="lightbox" hidden>
+    <div class="backdrop" data-close></div>
+    <figure class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-title">
+      <button class="close" data-close aria-label="닫기">✕</button>
+      <div class="lb-image" id="lb-image"></div>
+      <figcaption id="lb-caption"></figcaption>
+      <div class="lb-nav">
+        <button id="lb-prev" aria-label="이전 사진">← 이전</button>
+        <span id="lb-count"></span>
+        <button id="lb-next" aria-label="다음 사진">다음 →</button>
+      </div>
+    </figure>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

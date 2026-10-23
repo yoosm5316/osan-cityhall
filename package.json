@@ -1,0 +1,14 @@
+{
+  "name": "osan-cityhall",
+  "private": true,
+  "type": "module",
+  "description": "오산시청 홈페이지(실습용) + RAG 챗봇",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "ingest": "node scripts/ingest.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}
