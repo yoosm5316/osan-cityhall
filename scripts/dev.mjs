@@ -3,12 +3,15 @@
 import { createServer } from "node:http";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
+import { fileURLToPath } from "node:url";
 import handler from "../api/chat.js";
 
-if (existsSync(".env")) process.loadEnvFile(".env");
+// 어느 폴더에서 실행해도 프로젝트 폴더의 파일과 .env 를 쓰도록 함
+const ROOT = fileURLToPath(new URL("..", import.meta.url)).replace(/[\\/]$/, "");
+const ENV_FILE = join(ROOT, ".env");
+if (existsSync(ENV_FILE)) process.loadEnvFile(ENV_FILE);
 
 const PORT = Number(process.env.PORT || 3000);
-const ROOT = process.cwd();
 const TYPES = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg" };
 
 createServer(async (req, res) => {
