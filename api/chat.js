@@ -41,9 +41,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    const [queryEmbedding] = await embed([message], "query");
+    const history = cleanHistory(body.history);
+    // "거기는요?" 같은 이어지는 질문도 찾을 수 있도록 바로 앞 질문을 검색어에 함께 넣음
+    const previous = history.filter((m) => m.role === "user").at(-1)?.content ?? "";
+    const searchText = previous ? `${previous.slice(0, 300)}\n${message}` : message;
+
+    const [queryEmbedding] = await embed([searchText], "query");
     const chunks = await searchChunks(queryEmbedding);
-    const answer = await generateAnswer(message, cleanHistory(body.history), chunks);
+    const answer = await generateAnswer(message, history, chunks);
 
     // 같은 부서의 청크가 여러 개 나오면 출처는 한 번만 표시
     const sources = [...new Map(chunks.map((c) => [c.doc_id, { id: c.doc_id, title: c.title }])).values()];
